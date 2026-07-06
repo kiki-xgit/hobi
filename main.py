@@ -1,6 +1,6 @@
 from fasthtml.common import *
 
-app, rt = fast_app()
+app, rt = fast_app(db_file=None)
 
 css_rules = """
 * {
@@ -128,7 +128,6 @@ def get():
         )
     )
 
-# INI KUNCI UTAMANYA BIAR VERCEL GAK ERROR 500:
 handler = app
 
 if __name__ == "__main__":
