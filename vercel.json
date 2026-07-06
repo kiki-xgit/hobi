@@ -1,12 +1,4 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "main.py",
-      "use": "@vercel/python",
-      "config": { "wsgiOptions": { "app": "app" } }
-    }
-  ],
   "routes": [
     {
       "src": "/(.*)",
