@@ -127,7 +127,7 @@ def get():
                 Span(id="date"), " ", 
                 Span(id="year"), " ", 
                 Span("00:00:00", id="clock"), " ", 
-                Span("Jakarta (UTC+7)", cls="location")
+                Span("UTC+7", cls="location")
             )
         )
     )
