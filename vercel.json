@@ -2,7 +2,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "index.py"
+      "dest": "main.py"
     }
   ]
 }
