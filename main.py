@@ -37,14 +37,17 @@ h1 {
     line-height: 1.1;
 }
 .info-container {
-    margin-top: clamp(4rem, 15vh, 8rem);
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
 }
 .clock-section {
     font-size: 1.1rem;
     font-variant-numeric: tabular-nums;
     color: #999999;
     letter-spacing: 0.05em;
-    margin-bottom: 1.25rem;
 }
 .location {
     color: #999999;
@@ -59,7 +62,6 @@ h1 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
 }
 .logo-container {
     display: flex;
@@ -114,18 +116,18 @@ def get():
     return Title("Hello World"), Main(cls="content")(
         H1("Hello World!"),
         Div(cls="info-container")(
+            Div(cls="footer")(
+                Div(cls="logo-container")(
+                    Img(src="vercel-logo.png", cls="logo-box"),
+                    Img(src="fasthtml-logo.svg", cls="logo-box")
+                )
+            ),
             Div(cls="clock-section")(
                 Span(id="day"), " ",
                 Span(id="date"), " ", 
                 Span(id="year"), " ", 
                 Span("00:00:00", id="clock"), " ", 
                 Span("Jakarta (UTC+7)", cls="location")
-            ),
-            Div(cls="footer")(
-                Div(cls="logo-container")(
-                    Img(src="vercel-logo.png", cls="logo-box"),
-                    Img(src="fasthtml-logo.svg", cls="logo-box")
-                )
             )
         )
     )
