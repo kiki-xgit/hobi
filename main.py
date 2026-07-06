@@ -1,6 +1,6 @@
 from fasthtml.common import *
 
-app, rt = fast_app(db_file=None)
+_app, rt = fast_app(db_file=None)
 
 css_rules = """
 * {
@@ -127,6 +127,8 @@ def get():
             Script(NotStr(js_code))
         )
     )
+
+app = _app
 
 if __name__ == "__main__":
     serve()
