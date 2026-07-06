@@ -72,23 +72,6 @@ h1 {
     max-width: clamp(100px, 25vw, 140px);
     height: auto;
 }
-.badge {
-    background-color: #ffffff;
-    color: #000000;
-    padding: 0.3rem 0.7rem;
-    border-radius: 20px;
-    font-weight: 600;
-    display: inline-block;
-    animation: badgeGlow 2s ease-in-out infinite alternate;
-}
-@keyframes badgeGlow {
-    from {
-        box-shadow: 0 0 8px rgba(255, 255, 255, 0.3), 0 0 15px rgba(255, 255, 255, 0.2);
-    }
-    to {
-        box-shadow: 0 0 18px rgba(255, 255, 255, 0.9), 0 0 28px rgba(255, 255, 255, 0.5);
-    }
-}
 """
 
 js_code = """
@@ -102,12 +85,16 @@ function updateTime() {
     const seconds = String(jkt.getSeconds()).padStart(2, '0');
     document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
 
+    const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+    const dayName = days[jkt.getDay()];
+    document.getElementById('day').textContent = dayName + ',';
+
     const day = String(jkt.getDate()).padStart(2, '0');
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
     const month = months[jkt.getMonth()];
     document.getElementById('date').textContent = `${day} ${month}`;
     
-    document.getElementById('year').textContent = jkt.getFullYear() + " ";
+    document.getElementById('year').textContent = jkt.getFullYear();
 }
 setInterval(updateTime, 1000);
 window.addEventListener('load', updateTime);
@@ -128,7 +115,9 @@ def get():
         H1("Hello World!"),
         Div(cls="info-container")(
             Div(cls="clock-section")(
+                Span(id="day"), " ",
                 Span(id="date"), " ", 
+                Span(id="year"), " ", 
                 Span("00:00:00", id="clock"), " ", 
                 Span("Jakarta (UTC+7)", cls="location")
             ),
@@ -136,11 +125,6 @@ def get():
                 Div(cls="logo-container")(
                     Img(src="vercel-logo.png", cls="logo-box"),
                     Img(src="fasthtml-logo.svg", cls="logo-box")
-                ),
-                Div(style="display: flex; align-items: center; justify-content: center; gap: 0.5rem;")(
-                    Span(id="year"), 
-                    " Powered by ", 
-                    Span("Vercel Hosting", cls="badge")
                 )
             )
         )
