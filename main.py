@@ -1,7 +1,5 @@
 from fasthtml.common import *
 
-_app, rt = fast_app(db_file=None)
-
 css_rules = """
 * {
     box-sizing: border-box;
@@ -99,32 +97,36 @@ function updateTime() {
     
     document.getElementById('year').textContent = jkt.getFullYear() + " ";
 }
-
 setInterval(updateTime, 1000);
-updateTime();
+window.addEventListener('load', updateTime);
 """
+
+# KUNCINYA DI SINI: Kita daftarkan CSS dan JS lo ke dalam `hdrs` 
+# supaya disuntikkan dengan benar ke tag <head> oleh FastHTML.
+_app, rt = fast_app(
+    db_file=None, 
+    live=False,
+    hdrs=(
+        Style(NotStr(css_rules)),
+        Script(NotStr(js_code))
+    )
+)
 
 @rt("/")
 def get():
-    return Title("Hello World"), Html(lang="id")(
-        Style(NotStr(css_rules)),
-        Body(
-            Div(cls="content")(
-                H1("Hello World!"),
-                Div(cls="info-container")(
-                    Div(cls="clock-section")(
-                        Span(id="date"), " ", 
-                        Span("00:00:00", id="clock"), " ", 
-                        Span("Jakarta (UTC+7)", cls="location")
-                    ),
-                    Div(cls="footer")(
-                        Span(id="year"), 
-                        " Powered by ", 
-                        Span("Vercel Hosting", cls="badge")
-                    )
-                )
+    return Title("Hello World"), Main(cls="content")(
+        H1("Hello World!"),
+        Div(cls="info-container")(
+            Div(cls="clock-section")(
+                Span(id="date"), " ", 
+                Span("00:00:00", id="clock"), " ", 
+                Span("Jakarta (UTC+7)", cls="location")
             ),
-            Script(NotStr(js_code))
+            Div(cls="footer")(
+                Span(id="year"), 
+                " Powered by ", 
+                Span("Vercel Hosting", cls="badge")
+            )
         )
     )
 
