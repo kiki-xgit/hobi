@@ -56,9 +56,23 @@ h1 {
     letter-spacing: 0.05em;
     font-weight: 400;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 1rem;
+}
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+}
+.logo-box {
+    width: clamp(50px, 15vw, 65px);
+    height: clamp(50px, 15vw, 65px);
+    border-radius: 10px;
+    object-fit: cover;
 }
 .badge {
     background-color: #ffffff;
@@ -101,8 +115,6 @@ setInterval(updateTime, 1000);
 window.addEventListener('load', updateTime);
 """
 
-# KUNCINYA DI SINI: Kita daftarkan CSS dan JS lo ke dalam `hdrs` 
-# supaya disuntikkan dengan benar ke tag <head> oleh FastHTML.
 _app, rt = fast_app(
     db_file=None, 
     live=False,
@@ -123,9 +135,15 @@ def get():
                 Span("Jakarta (UTC+7)", cls="location")
             ),
             Div(cls="footer")(
-                Span(id="year"), 
-                " Powered by ", 
-                Span("Vercel Hosting", cls="badge")
+                Div(cls="logo-container")(
+                    Img(src="vercel-logo.jpg", cls="logo-box"),
+                    Img(src="fasthtml-logo.jpeg", cls="logo-box")
+                ),
+                Div(style="display: flex; align-items: center; justify-content: center; gap: 0.5rem;")(
+                    Span(id="year"), 
+                    " Powered by ", 
+                    Span("Vercel Hosting", cls="badge")
+                )
             )
         )
     )
