@@ -1,5 +1,4 @@
 from fasthtml.common import *
-from mangum import Mangum
 
 app, rt = fast_app(db_file=None)
 
@@ -128,8 +127,6 @@ def get():
             Script(NotStr(js_code))
         )
     )
-
-handler = Mangum(app, lifespan="off")
 
 if __name__ == "__main__":
     serve()
