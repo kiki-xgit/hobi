@@ -92,7 +92,7 @@ function updateTime() {
     document.getElementById('day').textContent = dayName + ',';
 
     const day = String(jkt.getDate()).padStart(2, '0');
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+    const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
     const month = months[jkt.getMonth()];
     document.getElementById('date').textContent = `${day} ${month}`;
     
