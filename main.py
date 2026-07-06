@@ -134,8 +134,8 @@ def get():
             ),
             Div(cls="footer")(
                 Div(cls="logo-container")(
-                    Img(src="vercel-logo.jpg", cls="logo-box"),
-                    Img(src="fasthtml-logo.jpeg", cls="logo-box")
+                    Img(src="vercel-logo.png", cls="logo-box"),
+                    Img(src="fasthtml-logo.svg", cls="logo-box")
                 ),
                 Div(style="display: flex; align-items: center; justify-content: center; gap: 0.5rem;")(
                     Span(id="year"), 
