@@ -69,10 +69,8 @@ h1 {
     width: 100%;
 }
 .logo-box {
-    width: clamp(50px, 15vw, 65px);
-    height: clamp(50px, 15vw, 65px);
-    border-radius: 10px;
-    object-fit: cover;
+    max-width: clamp(100px, 25vw, 140px);
+    height: auto;
 }
 .badge {
     background-color: #ffffff;
